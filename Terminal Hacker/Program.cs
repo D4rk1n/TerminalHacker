@@ -34,8 +34,8 @@ namespace Terminal_Hacker
                 }
 
             }
+           
         }
-
         private static void THName()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -56,6 +56,12 @@ namespace Terminal_Hacker
             Console.WriteLine("         |_|  |_/_/    \\_\\_____|_|\\_\\______|_|  \\_\\ \n\n");
             Console.ResetColor();
         }
+        public void CrackPass()
+        {
+            Console.Clear();
+            Console.Beep();
+            Mode = Screen.Win;
+        }
 
         enum Screen {Menu,Password,Win,GameOver};
         static void Main(string[] args)
@@ -69,7 +75,7 @@ namespace Terminal_Hacker
                         p.MainMenu();
                         break;
                     case Screen.Password:
-                        Console.Clear();
+                        p.CrackPass();
                         break;
                     case Screen.Win:
                         break;
