@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminal Hacker", "Terminal Hacker\Terminal Hacker.csproj", "{8F914333-EECD-41B6-A2E1-6929EF0A032E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F914333-EECD-41B6-A2E1-6929EF0A032E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F914333-EECD-41B6-A2E1-6929EF0A032E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F914333-EECD-41B6-A2E1-6929EF0A032E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F914333-EECD-41B6-A2E1-6929EF0A032E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE8A2D8E-5AEE-4F3E-83DB-AAEE8F981038}
+	EndGlobalSection
+EndGlobal
