@@ -7,64 +7,58 @@ using System.Threading.Tasks;
 
 namespace Terminal_Hacker
 {
+    class IO
+    {
+        public  void PrintLine(string Line)
+        {
+            string cl = "";
+            int l = Console.CursorLeft;
+            int t = Console.CursorTop;
+            for (int i = 0; i < Line.Length; i++)
+            {
+                Console.SetCursorPosition(l, t);
+                cl += Line[i];
+                Console.WriteLine(cl);
+                //Console.Beep(500, 500);
+                Thread.Sleep(50);
+            }
+        }
+    }
+    class Password
+    {
+        private string[,] passwords;
+
+        public Password() {
+            passwords = new string[3, 5]
+            {
+                {"weeka1999","d7kooo","yamomes","mardamarda","ana5ayf3leko"},
+                {"","","","",""},
+                {"","","","",""}
+            };
+        
+        }
+        public string RandPass(int lvl)
+        {
+            int r = 0;
+            return passwords[--lvl, r];
+        }
+     }
+
     class Program
     {
- 
-        int Diff;
-        Screen Mode = Screen.Menu;
-        public async Task MainMenuAsync()
+        Program()
         {
-            THName();
-            string Progresbar = "Terminal Hacker";
-            var title = "";
-           
-           
-                for (int i = 0; i < Progresbar.Length; i++)
-                {
-                    title += Progresbar[i];
-                    Console.Title = title;
-                Thread.Sleep(100);
-
-                }
-                title = "";
-           
- 
-            bool next = false;
-            Console.WriteLine("Choose a Terminal to Be Hacked");
-            Console.WriteLine("1)");
-            Console.WriteLine("2)");
-            Console.WriteLine("3)");
-
-            while(!next)
-            {
-                string choice = Console.ReadLine();
-                if (choice == "1" )
-                {
-                    Diff = 1;
-                    next = true;
-                    Mode = Screen.Password;
-                    Console.ForegroundColor = ConsoleColor.Green;
-                }
-                if (choice == "2")
-                {
-                    Diff = 2;
-                    next = true;
-                    Mode = Screen.Password;
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                }
-                if (choice == "3")
-                {
-                    Diff = 3;
-                    next = true;
-                    Mode = Screen.Password;
-                    Console.ForegroundColor = ConsoleColor.Red;
-                }
-
-            }
-            Console.Clear();
-           
+            Mode = Screen.Menu;
+            Output = new IO();
+            Pass = new Password();
         }
-        private static void THName()
+        private Password Pass;
+        private  IO Output;
+        private int Diff;
+        private int WinPoints;
+        private enum Screen { Menu, PasswordCrack, Win, GameOver };
+        private Screen Mode;
+        private  void THName()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("  _______ ______ _____  __  __ _____ _   _          _ ");
@@ -94,16 +88,76 @@ namespace Terminal_Hacker
             Thread.Sleep(100);
             Console.WriteLine("         |_|  |_/_/    \\_\\_____|_|\\_\\______|_|  \\_\\ \n\n");
             Console.ResetColor();
-        }
-        public void CrackPass()
-        {
-            Console.Beep();
-            Console.WriteLine("You Have Chosen Diffculty : {0}", Diff);
-            
-            Mode = Screen.Win;
+            Output.PrintLine("Choose a Terminal to Be Hacked");
+            Output.PrintLine("1)Aly Weeka");
+            Output.PrintLine("2)Bakr");
+            Output.PrintLine("3)Ehab Talkhan");
         }
 
-        enum Screen {Menu,Password,Win,GameOver};
+       
+        public void  MainMenu()
+        {
+            THName();
+            bool next = false;
+            while(!next)
+            {
+                string choice = Console.ReadLine();
+                if (choice == "1" )
+                {
+                    Diff = 1;
+                    next = true;
+                    Mode = Screen.PasswordCrack;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                if (choice == "2")
+                {
+                    Diff = 2;
+                    next = true;
+                    Mode = Screen.PasswordCrack;
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                }
+                if (choice == "3")
+                {
+                    Diff = 3;
+                    next = true;
+                    Mode = Screen.PasswordCrack;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                if (choice == "menu" || choice == "MENU")
+                {
+                    next = true;
+                }
+            }
+            Console.Clear();
+           
+        }
+        
+        public void CrackPass()
+        {
+            
+            Console.Beep();
+            Console.WriteLine("You Have Chosen Diffculty : {0}", Diff);
+            string pass = Pass.RandPass(Diff);
+            int l = Console.CursorLeft;
+            int t = Console.CursorTop;
+            for (WinPoints = 3 ; WinPoints> 0;WinPoints--)
+            {
+               // Console.SetCursorPosition(l, t);
+                Output.PrintLine("Enter Password : ");
+                string input = Console.ReadLine();
+                if (input == pass) break;
+                else
+                {
+                    Output.PrintLine("Wrong Password " +Convert.ToString(WinPoints-1) +" Tries Left !");
+                }
+            }
+
+
+            if (WinPoints > 0) Mode = Screen.Win;
+            else Mode = Screen.GameOver;
+        }
+
+
         static void Main(string[] args)
         {
             Program p = new Program();
@@ -112,14 +166,18 @@ namespace Terminal_Hacker
                 switch (p.Mode)
                 {
                     case Screen.Menu:
-                        p.MainMenuAsync();
+                        Console.Clear();
+                        p.MainMenu();
                         break;
-                    case Screen.Password:
+                    case Screen.PasswordCrack:
+                        Console.Clear();
                         p.CrackPass();
                         break;
                     case Screen.Win:
+                        Console.Clear();
                         break;
                     case Screen.GameOver:
+                        Console.Clear();
                         break;
 
                 }
