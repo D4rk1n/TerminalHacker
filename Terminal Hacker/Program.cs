@@ -14,6 +14,7 @@ namespace Terminal_Hacker
             string cl = "";
             int l = Console.CursorLeft;
             int t = Console.CursorTop;
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             for (int i = 0; i < Line.Length; i++)
             {
                 Console.SetCursorPosition(l, t);
@@ -22,6 +23,10 @@ namespace Terminal_Hacker
                 //Console.Beep(500, 500);
                 Thread.Sleep(50);
             }
+        }
+        public void ClearAfterCursor()
+        {
+            for (int i = 0; i < 10; i++) Console.WriteLine("\t\t\t\t\t\t\t\t");
         }
     }
     class Password
@@ -32,8 +37,8 @@ namespace Terminal_Hacker
             passwords = new string[3, 5]
             {
                 {"weeka1999","d7kooo","yamomes","mardamarda","ana5ayf3leko"},
-                {"","","","",""},
-                {"","","","",""}
+                {"allass","lmao","","",""},
+                {"6fromleft","6fromright","magda1998","lmaoyeah","yes"}
             };
         
         }
@@ -140,9 +145,21 @@ namespace Terminal_Hacker
             string pass = Pass.RandPass(Diff);
             int l = Console.CursorLeft;
             int t = Console.CursorTop;
+            char heart = '\u2665';
             for (WinPoints = 3 ; WinPoints> 0;WinPoints--)
             {
-               // Console.SetCursorPosition(l, t);
+                Console.SetCursorPosition(l, t);
+                Output.ClearAfterCursor();
+               
+           
+                Console.SetCursorPosition(l, t);
+                string HP = "";
+               for(int i = 0;i<WinPoints;i++)
+                {
+                    HP += heart;
+                }
+                
+                Output.PrintLine("Your HP " + HP);
                 Output.PrintLine("Enter Password : ");
                 string input = Console.ReadLine();
                 if (input == pass) break;
