@@ -37,15 +37,16 @@ namespace Terminal_Hacker
             passwords = new string[3, 5]
             {
                 {"weeka1999","d7kooo","yamomes","mardamarda","ana5ayf3leko"},
-                {"allass","lmao","","",""},
+                {"allass","lmfao","nodiscussion","ahmedmousa",""},
                 {"6fromleft","6fromright","magda1998","lmaoyeah","yes"}
             };
         
         }
         public string RandPass(int lvl)
         {
-            int r = 0;
-            return passwords[--lvl, r];
+            Random random = new Random();
+            int r = random.Next(5);
+            return passwords[--lvl, 0];
         }
      }
 
@@ -56,11 +57,13 @@ namespace Terminal_Hacker
             Mode = Screen.Menu;
             Output = new IO();
             Pass = new Password();
+            Exit = false;
         }
         private Password Pass;
         private  IO Output;
         private int Diff;
         private int WinPoints;
+        private bool Exit;
         private enum Screen { Menu, PasswordCrack, Win, GameOver };
         private Screen Mode;
         private  void THName()
@@ -98,7 +101,47 @@ namespace Terminal_Hacker
             Output.PrintLine("2)Bakr");
             Output.PrintLine("3)Ehab Talkhan");
         }
+        private void GO()
+        {
+            Console.WriteLine(@"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████ 
+ ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀ 
+▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███   
+░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄ 
+░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒
+ ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░
+  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░
+░ ░   ░   ░   ▒   ░      ░      ░   
+      ░       ░  ░       ░      ░  ░
+ ▒█████   ██▒   █▓▓█████  ██▀███    
+▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒  
+▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒  
+▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄    
+░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒  
+░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░  
+  ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░  
+░ ░ ░ ▒       ░░     ░     ░░   ░   
+    ░ ░        ░     ░  ░   ░      ");
 
+        }
+        private void AG()
+        {
+            Console.WriteLine(@"    _____________    $$$$$$\   $$$$$$\  $$$$$$$$\  $$$$$$\   $$$$$$\                      
+   /      _      \  $$  __$$\ $$  __$$\ $$  _____|$$  __$$\ $$  __$$\                       
+   [] :: (_) :: []  $$ /  $$ |$$ /  \__|$$ |      $$ /  \__|$$ /  \__|    
+   [] ::::::::: []  $$$$$$$$ |$$ |      $$$$$\    \$$$$$$\  \$$$$$$\  
+   [] ::::::::: []  $$  __$$ |$$ |      $$  __|    \____$$\  \____$$\  
+   [] ::::::::: []  $$ |  $$ |$$ |  $$\ $$ |      $$\   $$ |$$\   $$ 
+   [] ::::::::: []  $$ |  $$ |\$$$$$$  |$$$$$$$$\ \$$$$$$  |\$$$$$$  |
+   [_____________]  \__|  \__| \______/ \________| \______/  \______/
+       I     I       $$$$$$\  $$$$$$$\   $$$$$$\  $$\   $$\ $$$$$$$$\ $$$$$$$$\ $$$$$$$\  
+       I_   _I      $$  __$$\ $$  __$$\ $$  __$$\ $$$\  $$ |\__$$  __|$$  _____|$$  __$$\
+        /   \       $$ /  \__|$$ |  $$ |$$ /  $$ |$$$$\ $$ |   $$ |   $$ |      $$ |  $$ 
+        \   /       $$ |$$$$\ $$$$$$$  |$$$$$$$$ |$$ $$\$$ |   $$ |   $$$$$\    $$ |  $$ |
+        (   )       $$ |\_$$ |$$  __$$< $$  __$$ |$$ \$$$$ |   $$ |   $$  __|   $$ |  $$ |
+        (   )       $$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |\$$$ |   $$ |   $$ |      $$ |  $$ |
+        /   \       \$$$$$$  |$$ |  $$ |$$ |  $$ |$$ | \$$ |   $$ |   $$$$$$$$\ $$$$$$$  |
+        \___/        \______/ \__|  \__|\__|  \__|\__|  \__|   \__|   \________|\_______/ ");
+        }
        
         public void  MainMenu()
         {
@@ -136,7 +179,6 @@ namespace Terminal_Hacker
             Console.Clear();
            
         }
-        
         public void CrackPass()
         {
             
@@ -162,23 +204,49 @@ namespace Terminal_Hacker
                 Output.PrintLine("Your HP " + HP);
                 Output.PrintLine("Enter Password : ");
                 string input = Console.ReadLine();
-                if (input == pass) break;
+                if (input == pass)
+                {
+                    Output.PrintLine("Password Accepted");
+                    break;
+                }
                 else
                 {
-                    Output.PrintLine("Wrong Password " +Convert.ToString(WinPoints-1) +" Tries Left !");
+                    Output.PrintLine("Wrong Password " + Convert.ToString(WinPoints - 1) + " Tries Left !");
                 }
             }
-
+        
 
             if (WinPoints > 0) Mode = Screen.Win;
             else Mode = Screen.GameOver;
+        }
+        public void GameOver()
+        {
+            GO();
+            Output.PrintLine("\nDo You Want to Play Again ? y/n");
+            char c = Convert.ToChar(Console.Read());
+            if (c == 'y')
+            {
+                Mode = Screen.Menu;
+            }
+            else { Exit = true; }
+        }
+        public void WinScreen()
+        {
+            AG();
+            Output.PrintLine("\nDo You Want to Play Again ? y/n");
+            char c = Convert.ToChar(Console.Read());
+            if(c == 'y')
+            {
+                Mode = Screen.Menu;
+            }
+            else { Exit = true; }
         }
 
 
         static void Main(string[] args)
         {
             Program p = new Program();
-            while (true)
+            while (!p.Exit)
             {  
                 switch (p.Mode)
                 {
@@ -192,9 +260,11 @@ namespace Terminal_Hacker
                         break;
                     case Screen.Win:
                         Console.Clear();
+                        p.WinScreen();
                         break;
                     case Screen.GameOver:
                         Console.Clear();
+                        p.GameOver();
                         break;
 
                 }
