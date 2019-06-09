@@ -1,4 +1,5 @@
 # TerminalHacker
-A Simple Password Guessing Game Using **C#** 
+A Simple Password Guessing Game Using **C#**
 
-![Terminal Hacker Demo](TerminalHacker/demo.gif)
+# Demo
+![Terminal Hacker Demo](Terminal Hacker/demo.gif)
