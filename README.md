@@ -2,4 +2,4 @@
 A Simple Password Guessing Game Using **C#**
 
 # Demo
-![Terminal Hacker Demo](demo/demo.gif)
+![Terminal Hacker Demo](gif/demo.gif)
